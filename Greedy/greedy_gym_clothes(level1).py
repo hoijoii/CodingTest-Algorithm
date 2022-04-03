@@ -1,35 +1,20 @@
+# 다른 학생에게 옷을 빌려주기 전 lost와 reverse의 중복 요소를 제거하는 것이 관건인 문제
 
 def solution(n, lost, reverse):
 
     lost.sort()
     reverse.sort()
 
-    attend = [i for i in range(1, n + 1) if i not in lost]
-
-    new_reverse=[]
-    new_lost=[]
-
-    for i in reverse:
-        if i not in lost:
-            new_reverse.append(i)
-        else:
-            attend.append(i)
-
-    for i in lost:
-        if i not in reverse:
-            new_lost.append(i)
+    new_reverse = [i for i in reverse if i not in lost]
+    new_lost = [i for i in lost if i not in reverse]
 
     for i in new_reverse:
         if i - 1 in new_lost:
-            attend.append(i - 1)
             new_lost.remove(i - 1)
 
         elif i + 1 in new_lost:
-            attend.append(i + 1)
             new_lost.remove(i + 1)
 
-    answer = len(attend)
+    answer = n-len(new_lost)
 
     return answer
-
-print(solution(5, [2, 4], [3, 1]))
