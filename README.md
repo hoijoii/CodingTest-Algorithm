@@ -1,4 +1,4 @@
-# Programmers-Algorithm
+# Coding-Test-Algorithm
 
 ▶ 그리디(Greedy)
 
@@ -17,6 +17,8 @@
  ∙ 괄호 변환-level2 (프로그래머스: https://programmers.co.kr/learn/courses/30/lessons/60058)
  
  ∙ 경쟁적 전염 (백준_18405: https://www.acmicpc.net/problem/18405)
+ 
+ ∙ 연산자 끼워넣기 (백준_14888: https://www.acmicpc.net/problem/14888)
  
 ▶ Dynamic Programming
 
