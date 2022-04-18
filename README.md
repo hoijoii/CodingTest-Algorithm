@@ -3,15 +3,18 @@
 ▶ 그리디(Greedy)
 
   ∙ 체육복-level1 (프로그래머스: https://programmers.co.kr/learn/courses/30/lessons/42862)
+  
 
+▶ 구현 (Implementation)
 
+  ∙ 럭키 스트레이트 (백준_18406: https://www.acmicpc.net/problem/18406)
+  
 
 ▶ 정렬(Sort)
 
  ∙ 실패율-level1 (프로그래머스: https://programmers.co.kr/learn/courses/30/lessons/42889)
  
  ∙ 안테나 (백준_18310: https://www.acmicpc.net/problem/18310)
-
 
  
 ▶ DFS/BFS
@@ -21,7 +24,6 @@
  ∙ 경쟁적 전염 (백준_18405: https://www.acmicpc.net/problem/18405)
  
  ∙ 연산자 끼워넣기 (백준_14888: https://www.acmicpc.net/problem/14888)
-
 
 
 ▶ Dynamic Programming
