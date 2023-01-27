@@ -21,36 +21,101 @@ n이 2 이상일 때는.. ? 좌표들을 생각하면서 풀어나가기 . .
 첫째줄에 색종이가 붙은 검은 영역의 넓이 구하기
 """
 
-n = int(input()) # 검은색종이 수
+k = int(input()) # 검은색종이 수
+numbers = [list(map(int, input().split())) for _ in range(k)]  # 검은색종이 위치 input
 
-locations = [] # 검은색종이 위치
-black = [] # 검사된 검은색종이 
-area = n*100 # 총 넓이
-over_area = 0 # 겹친 영역 넓이 계산
+black = [] # 검사된 색종이
 
-for _ in range(n):
-    cdnate = list(map(int, input().split()))
-    locations.append(cdnate)
+# 중복 제거
+lo = []
+for n in numbers:
+    if n not in lo:
+        lo.append(n)
+
+area = len(lo)*100 # 총 넓이
+
+# 겹치는 영역 찾기
+for i in range(len(lo)) :
+
+    garo = 0
+    sero = 0
+    
+    if i == 0 : black.append(lo[0])
+
+    elif i > 0 :
+
+        for paper in black :
+            
+            garo = 10 - abs(paper[0] - lo[i][0])
+            sero = 10 - abs(paper[1] - lo[i][1])
+
+            if 0 < garo < 10 and 0 <sero < 10 :
+                area -= garo*sero
+            #print(garo, sero, area)
+        
+        black.append(lo[i])
+        
+print(area)
+
+
+
+
 
 #겹치는 영역 계산
-for i in range(n):
+""" for i in range(n):
     garo=0
     sero=0
 
     if i == 0 : black.append(locations[i]) # 최초의 색종이
 
     elif i > 0 : 
-        print(black.len())
-        """ for j in black.len() :
-            # 가로가 안 겹치는 경우
-            if locations[i][0]+10 < black[j][0] or locations[i][0]>black[j][0]+10 :
-                garo = 0 #나중에 세로가 겹치면 garo=10임.
-                print(garo) 
-             elif black[j][0] < lo """
+        for paper in black :
+            # garo, sero 둘 중 하나가 기존 영역과 완전 같거나 하나만 같을 때
+            if locations[i][0] == paper[0] :
+                garo = 10
+                if locations[i][1] == paper[1] :
+                    sero = 10
+                elif paper[1] < locations[i][1] < paper[1]+10 :
+                    sero = paper[1] + 10 - locations[i][1]
+                elif paper[1] < locations[i][1]+10 < paper[1]+10 :
+                    sero = locations[i][1] + 10 - paper[1]
+
+            elif locations[i][1] == paper[1] :
+                sero = 10
+                #if locations[i][0] == paper[0] : 
+                if paper[0] < locations[i][0] < paper[0]+10:
+                    garo = paper[0] + 10 - locations[i][1]
+                elif paper[0] < locations[i][0]+10 < paper[0]+10:
+                    garo = locations[i][0]+10 - paper[0]
+
+
+            # 가로 겹치는 영역 찾기
+            # 안 겹치는 경우
+            if locations[i][0]+10 < paper[0] or locations[i][0] > paper[0]+10 :
+                garo = 0 
+            # 일부 겹치는 경우
+            elif paper[0] < locations[i][0]+10 < paper[0]+10 :
+                garo = locations[i][0]+10-paper[0]
+            # 일부 겹치는 경우
+            elif paper[0] < locations[i][0] < paper[0]+10 :
+                garo = paper[0]+10-locations[i][0]
+
+
+            # 세로 겹치는 영역 찾기
+            # (안 겹치는 경우)기존 영역보다 아예 아래 or 기존 영역보다 아예 위
+            if locations[i][1]+10 < paper[1] or locations[i][1] > paper[1]+10 :
+                sero = 0
+            elif paper[1]<locations[i][1]+10<paper[1]+10:
+                sero = locations[i][1]+10 - paper[1]
+            elif paper[1] < locations[i][1] < paper[1]+10 :
+                sero = paper[1]+10 - locations[i][1]
+
+            # 겹치는 면적 더하기
+            over_area += garo * sero
             
+# 전체 면적에서 겹치는 면적을 뺌
+area -= over_area
 
-        
-
-
-
+print(area) """
+    
 #print(locations)
