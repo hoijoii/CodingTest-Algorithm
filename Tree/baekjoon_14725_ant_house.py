@@ -35,3 +35,9 @@ dfs 사용?
 N = int(input())
 food = [list(map(str, input().split())) for _ in range(N)]
 
+print(food)
+
+for f in food:
+    print('---------------')
+    for i in range(1, int(f[0])):
+        print(f[i])
