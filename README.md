@@ -9,6 +9,7 @@
 
 - [럭키 스트레이트](https://github.com/hoijoii/CodingTest-Algorithm/blob/master/Implementation/implementation_baekjoon_18406_lucky_straight.py) ([백준_18406](https://www.acmicpc.net/problem/18406))
 - [문자열 재정렬](https://github.com/hoijoii/CodingTest-Algorithm/blob/master/Implementation/implementation_Facebook_Interview_rearrange_string.py) (Facebook Interview)
+- [색종이](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Implementation/baekjoon_2563_color_paper.py) ([백준_2563](https://www.acmicpc.net/problem/2563))
   
 
 ▶ 정렬(Sort)
