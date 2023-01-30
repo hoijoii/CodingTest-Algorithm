@@ -1,7 +1,7 @@
 k = int(input()) # 검은색종이 수
 lo = [list(map(int, input().split())) for _ in range(k)]  # 검은색종이 위치 input
 
-dhj = [[0 for _ in range(100)] for _ in range(100)]
+dhj = [[0 for _ in range(100)] for _ in range(100)] # do hwa ji
 result = 0
 
 #좌표에 1 찍기
