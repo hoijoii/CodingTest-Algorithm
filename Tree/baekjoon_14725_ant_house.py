@@ -39,5 +39,5 @@ print(food)
 
 for f in food:
     print('---------------')
-    for i in range(1, int(f[0])):
+    for i in range(1, int(f[0])+1):
         print(f[i])
