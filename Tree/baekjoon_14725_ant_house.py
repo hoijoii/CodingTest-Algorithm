@@ -43,19 +43,34 @@ class Node:
 class Tree:
     def __init__(self):
         self.root = Node(None)
+        self.depth = 0
 
     def insertFoods(self, values):
         current_node = self.root
 
         for i in range(1, len(values)):
+            print(current_node.children)
             if values[i] not in current_node.children:
                 # 컬렉션['문자'] = 값  => '문자'는 key값.
                 current_node.children[values[i]] = Node(values[i])
 
             current_node = current_node.children[values[i]]
 
+        
+    def traversal(self, node):
+        floor = ''
+        for child in sorted(node.children):
+            for _ in range(self.depth):
+                floor += '--'
+            
+            print(floor + child)
+
+            self.depth += 1
+            self.traversal(node.children[child])   
 
 tree = Tree()
 
 for f in foods:
     tree.insertFoods(f)
+
+tree.traversal(tree.root)
