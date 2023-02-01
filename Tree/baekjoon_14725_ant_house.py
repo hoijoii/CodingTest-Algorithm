@@ -33,11 +33,29 @@ dfs 사용?
 """
 
 N = int(input())
-food = [list(map(str, input().split())) for _ in range(N)]
+foods = [list(map(str, input().split())) for _ in range(N)]
 
-print(food)
+class Node:
+    def __init__(self, foodName):
+        self.foodName = foodName
+        self.children = {} # 딕셔너리 자료형
 
-for f in food:
-    print('---------------')
-    for i in range(1, int(f[0])+1):
-        print(f[i])
+class Tree:
+    def __init__(self):
+        self.root = Node(None)
+
+    def insertFoods(self, values):
+        current_node = self.root
+
+        for i in range(1, len(values)):
+            if values[i] not in current_node.children:
+                # 컬렉션['문자'] = 값  => '문자'는 key값.
+                current_node.children[values[i]] = Node(values[i])
+
+            current_node = current_node.children[values[i]]
+
+
+tree = Tree()
+
+for f in foods:
+    tree.insertFoods(f)
