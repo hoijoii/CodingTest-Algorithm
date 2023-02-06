@@ -23,6 +23,7 @@
 - [괄호 변환](https://github.com/hoijoii/CodingTest-Algorithm/blob/master/DFS%26BFS/baekjoon_DFS%26BFS_14888_insert_operator.py) ([프로그래머스](https://programmers.co.kr/learn/courses/30/lessons/60058))
 - [경쟁적 전염](https://github.com/hoijoii/CodingTest-Algorithm/blob/master/DFS%26BFS/baekjoon_DFS%26BFS_18405_competitive_contagion.py) ([백준_18405](https://www.acmicpc.net/problem/18405))
 - [연산자 끼워넣기](https://github.com/hoijoii/CodingTest-Algorithm/blob/master/DFS%26BFS/baekjoon_DFS%26BFS_14888_insert_operator.py)([백준_14888](https://www.acmicpc.net/problem/14888))
+- [개미굴](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/DFS%26BFS/baekjoon_14725_ant_house.py)([백준 14725](https://www.acmicpc.net/problem/14725))
 
 
 ▶ Dynamic Programming
