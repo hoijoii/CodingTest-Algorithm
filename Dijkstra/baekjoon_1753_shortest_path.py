@@ -1,4 +1,50 @@
 import heapq
+import sys
+
+V, E = map(int, sys.stdin.readline().split())
+start = int(input())
+
+inf = float('inf')
+graph = [[] for _ in range(V+1)]
+distance = [inf] * (V+1)
+
+for _ in range(E):
+    u, v, w = map(int, sys.stdin.readline().split())
+    graph[u].append((b, c))
+
+#dijkstra
+def shortest_path(start):
+    q = []
+    heapq.heappush(q, (0, start))
+    distance[start]
+
+    while q:
+        dis, now = heapq.heappop(q)
+
+        if distance[now] < dis:
+            continue
+
+        for i in graph[now]:
+            cost = dis + i[1]
+
+            if cost < distance[i[0]]:
+                distance[i[0]] = cost
+                heapq.heappush(q, (cost, i[0]))
+
+shortest_path(start)
+
+for i in range(1, V+1):
+    if distance[i] == inf:
+        print("INF")
+    else:
+        print(distance[i])
+
+
+
+
+
+
+""" import heapq
 
 ve = list(map(int, input().split())) # V, E
 start = int(input())
@@ -42,13 +88,4 @@ def dijkstra(graph, starting):
     
 
 dijkstra(costs, start)
-""" graph = {}
-
-for i in range(ve[0]):
-    graph[i] = {}
-    for value in uvw:
-        if value[0] == i :
-            graph[i].append({str(value[1]): value[2]})
-
-print(graph)
-     """
+ """
