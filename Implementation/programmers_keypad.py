@@ -36,6 +36,7 @@ result: "LRLLLRLLRRL"
 """
 def getLength(location, num):
   cost = abs(location-num)%3
+  if not cost : cost = 3
   print(cost)
 
   return cost
