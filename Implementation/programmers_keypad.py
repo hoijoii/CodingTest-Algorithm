@@ -57,10 +57,10 @@ def solution(numbers, hand):
     for n in numbers:
         if n==1 or n==4 or n==7:
           result+='L'
-          rhand = n    
+          lhand = n    
         elif n==3 or n==6 or n==9:
           result+='R'
-          lhand = n
+          rhand = n
         else:
           if getLength(lhand, n) < getLength(rhand, n) :
              result+='L'
