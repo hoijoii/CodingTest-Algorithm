@@ -1,8 +1,4 @@
 """
-123
-456
-789
-*0#
 
 초기값 - 왼손엄지: * , 오른엄지: #
 hand = 왼손잡이/오른손잡이 -> left 혹은 right
@@ -20,50 +16,77 @@ hand: "right"
 result: "LRLLLRLLRRL"
 """
 
-def findNumber(num, keypad):
-    for i, row in enumerate(keypad):
-        if num in row:
-            return (i, row.index(num))
-        
-def dfs(rhand, lhand, keypad) :
-    
-            
+"""
+1 2 3
+4 5 6
+7 8 9
+* 0 #
+
+*:10, 0:11, #:12
+
+가장 큰 이동 cost 4
+
+이동 cost 1일 때 숫자 차이 = 1 or 3
+이동 cost 2일 때 숫자 차이 = 2 or 4 or 6 
+이동 cost 3일 때 숫자 차이 = 5 or 7 or 9
+이동 cost 4일 때 숫자 차이 = 8 or 10
+
+=> (location-num)%3 = cost
+
+"""
+def getLength(location, num):
+  cost = abs(location-num)%3
+  print(cost)
+
+  return cost
+
+  """ if sub==1 or sub==3: return 1
+  elif sub==2 or sub==4 or sub==6: return 2
+  elif sub==5 or sub==7 or sub==9: return 3
+  elif sub==8 or sub==10: return 4 """
+
 def solution(numbers, hand):
     
     result = ""
-    
-    keypad = [
-        [1, 2, 3], 
-        [4, 5, 6], 
-        [7, 8, 9],
-        ['*', 0, '#']
-        ]
-    
-    rhand = keypad[3][2]
-    lhand = keypad[3][0]
+    rhand = 10 # #에서 시작
+    lhand = 12 # *에서 시작
 
-    r_len = 0
-    l_len = 0
+    for i in range(len(numbers)):
+       if numbers[i] == 0 : numbers[i] == 11
 
-    for num in numbers:
-        row, col = findNumber(num, keypad)
-        if num == 1 or num == 4 or num == 7: 
-           result+='L'
-           lhand = keypad[row][col]
-           
-        elif num == 3 or num == 6 or num == 9: 
-           result+='R'
-           rhand = keypad[row][col]
-        #2, 5, 8, 0일 때 ..
+    for n in numbers:
+        if n==1 or n==4 or n==7:
+          result+='L'
+          rhand = n    
+        elif n==3 or n==6 or n==9:
+          result+='R'
+          lhand = n
         else:
-            
-            
-            
-
-    print()
-
-
-
-    
+          if getLength(lhand, n) < getLength(rhand, n) :
+             result+='L'
+             lhand=n
+          elif getLength(rhand, n) == getLength(lhand, n):
+              if hand == "right":
+                result+='R'
+                rhand = n
+              else:
+                  result += 'L'
+                  lhand = n
+          else:
+              result += 'R'
+              rhand = n
+          """
+          elif getLength(rhand, n) == getLength(lhand, n):
+              if hand=='right': 
+                 result += 'R'
+                 rhand = n
+              else:
+                 result += 'L'
+                 lhand = n
+          else:
+              result += 'R'
+              rhand = n
+            """
+    print(result)
 
 solution([1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5], "right")
