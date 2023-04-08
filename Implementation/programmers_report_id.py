@@ -1,10 +1,3 @@
-"""
-테스트케이스:
-id_list = ["muzi", "frodo", "apeach", "neo", "zyordi"]
-report = ["muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi","zyordi frodo"]
-k = 2
-"""
-
 def solution(id_list, report, k):
     report = set(list(report))
     a=[]
