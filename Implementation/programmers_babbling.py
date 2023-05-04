@@ -8,7 +8,7 @@ def solution(babbling):
             if text * 2 not in b:
                 b = b.replace(text, ' ')
         if b.strip() == '':
-            count += 1
+            answer += 1
 
     return answer
 
