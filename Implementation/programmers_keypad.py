@@ -5,16 +5,6 @@
 * 0 #
 
 *:10, 0:11, #:12
-
-가장 큰 이동 cost 4
-
-이동 cost 1일 때 숫자 차이 = 1 or 3
-이동 cost 2일 때 숫자 차이 = 2 or 4 or 6 
-이동 cost 3일 때 숫자 차이 = 5 or 7 or 9
-이동 cost 4일 때 숫자 차이 = 8 or 10
-
-=> (location-num)%3 = cost
-
 """
 
 def getLength(location, num):
