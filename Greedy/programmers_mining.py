@@ -10,7 +10,6 @@ picks: [dia, iron, stone]
 -> 돌곡괭이 사용했을 때의 피로도를 기준으로 내림차순 정렬,(왜냐면 최악의 경우니까)
 -> 정렬된 순서대로 현재 갖고 있는 최선의 곡괭이를 사용했을 때 피로도를 정답에 더해주기
 
-https://velog.io/@seowj0710/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-Level-2-%EA%B4%91%EB%AC%BC-%EC%BA%90%EA%B8%B0-Java
 """
 
 def solution(picks, minerals):
@@ -68,38 +67,3 @@ def solution(picks, minerals):
             continue
 
     return answer
-
-""" solution([1, 3, 2], ["diamond", "diamond", "diamond", "iron", "iron", "diamond", "iron", "stone"]) """
-
-"""
-
-i=0
-	j=0
-		if 0 == 7 : break x
-		val=0
-		dia+=1 => dia=1
-		iron+=5 => iron=5
-		stone+=25 => stone=25
-		
-	j=1
-		if 1 == 7: break; x
-		val=0
-		dia+=1 => dia=2
-		iron+=5 => iron=10
-		stone+=25 => stone=50
-	j=2
-		if 2==7: break; x
-		val=0
-		dia+=1 => dia=3
-		iron+=5 => iron=15
-		stone+=25 => stone=75
-	j=3
-		if 3==7: break; x
-		val=1
-		dia+=1 => dia=4
-		iron+=1 => iron=16
-		stone+=5 => stone=80
-	j=4
-		if 4 ==7: break; x
-		val=1
-"""
