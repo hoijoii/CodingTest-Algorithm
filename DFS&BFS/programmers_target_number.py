@@ -1,0 +1,20 @@
+"""
+타겟넘버
+https://school.programmers.co.kr/learn/courses/30/lessons/43165
+
+정수를 순서 안 바꾸고 더하거나 빼서 타겟 넘버 만들기
+방법의 수를 리턴하면 됨.
+dfs.. 모든 숫자를 거쳐야하고 모든 방법을 알아야 하니까
+
+stack
+
+트리
+왼쪽이 + 오른쪽이 -
+"""
+
+def solution(numbers, target):
+    answer = 0
+
+    
+
+    return answer
