@@ -1,7 +1,3 @@
-"""
-
-"""
-
 def solution(word):
     answer = len(word)
     vowels = "AEIOU"
