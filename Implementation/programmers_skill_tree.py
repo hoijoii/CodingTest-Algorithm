@@ -2,62 +2,29 @@
 스킬트리
 https://school.programmers.co.kr/learn/courses/30/lessons/49993
 
-모든 문자열 대문자
-가능한 스킬트리 개수를 return
+CBD 순서대로 string(예: BACDE)을 검사
+C, B, D가 string의 어디에 있는지 찾고 어디 위치에 있는지 idx를 비교해보면 됨.
+C의 인덱스보다 B의 인덱스가 더 작으면 C보다 B가 먼저 나왔단 얘기임.
 
-index로 비교?만약 C의 인덱스보다 B의 인덱스가 뒤에 있으면 통과
+skill: CBD, string: CD
+=> B가 없으므로 string.find()의 결과는 -1이고 그 뒤로는 망한 문자열이라 idx를 무한대로 놓음.
+=> 나중에는 27이 bf_idx가 되므로 무조건 false됨.
 """
 
-""" def findOrder(skill, skill_trees):
-    skillInTree = { s : 0 for s in skill }
-    
-    for i in skill:
-        for string in skill_trees:
-            if i in string:
-                skillInTree[i] = string.index(i)
-
-    return skillInTree """
-
-"""
-skill에 있는 맨앞부터 순서대로 써야함.
-skill_trees의 string 인덱스가 높을수록 뒤에 썼다는 의미.
-
-검사할 것
-skill의 순서대로 쓰였는지
-앞 skill이 안 쓰였는데 뒷 skill이 쓰였는지
- - skill_trees의 index와 비교? 앞에 있는거 차례로 몇개쓰기 ㄱㅊ 뒤에 있는거 차례대로라도 쓰면 안됨
-"""
+def isValid(skill, string):
+    bf_idx = 0 #이전 인덱스
+    for i in range(len(skill)):
+        idx = string.find(skill[i]) #스킬트리에서 스킬 못 찾으면 -1반환
+        if idx == -1 : idx = 27 #무한대
+        if idx < bf_idx : return #스킬순서 어긋남
+        bf_idx = idx
+    return True
 
 def solution(skill, skill_trees):
     answer = 0
-    checked = []
     
     for string in skill_trees:
-        for i in skill:
-            if i in string:
-                checked.append([i, string.index(i)])
-        print(checked)
-        
-        for idx, [skl, tree_idx] in enumerate(checked):
-            if skl != skill[idx]: break
-            if tree_idx > checked[idx][1]: break
-    
-
-
-        """ if len(checkedIdx) > 1:
-            for n in range(len(checkedIdx)-1):
-                if checkedIdx[n] < checkedIdx[n+1] and :
-                    print('ok')
-                    continue
-                else: break
-                
-        else: answer += 1 """
-
-        print('--------------------------')
-        checked = []
-
-    print(answer)
+        if isValid(skill, string) : 
+            answer+=1
 
     return answer
-
-solution("CBD", ["BACDE", "CBADF", "AECB", "BDA"])
