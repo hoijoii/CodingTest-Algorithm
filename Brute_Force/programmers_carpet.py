@@ -2,32 +2,40 @@
 카펫
 https://school.programmers.co.kr/learn/courses/30/lessons/42842
 
-brown: 갈색 격자의 수
-yellow: 노란색 격자의 수
-카펫의 가로, 세로크기를 배열에 담아 return
+테스트케이스 규칙: brown+yellow = answer[0]*answer[1]
+=> brown+yellow의 약수 = brown의 가능한 가로세로 길이
+brown=24, yellow=24일 때 예시
 
-카펫의 가로길이는 세로길이와 같거나 길다
+00000000
+01111110
+01111110
+01111110
+01111110
+00000000
 
-직사각형을 어떻게 만드느냐 ?
-return 값인 배열의 두 값을 곱했을 때 brown+yellow값이 나옴 왜냐면 넓이공식이니까
-brown+yellow 값의 약수를 다 구해서..?
-
+brown가로-2 == yellow가로 and brown세로-2 == yellow세로
+인 값을 찾으면 됨.
 """
-
+# 약수 구하는 함수
 def divisor(num): 
-    data = set()
+    divisors = []
 
     for i in range(1, int(num**(1/2))+1):
         if num%i == 0:
-            data.add(i)
-            data.add(num//i)
-        return sorted(data)
+            divisors.append([int(num/i), i]) #가로가 세로와 같거나 더 김
+    
+    return divisors
 
 def solution(brown, yellow):
     answer = []
 
-    print(divisor(24))
+    brownGaroSero = divisor(brown+yellow)
+    yellowGaroSero = divisor(yellow)
+
+    for ga, se in brownGaroSero:
+        for g, s in yellowGaroSero:
+            if ga-2 == g and se-2 == s:
+                answer.append(ga)
+                answer.append(se)
     
     return answer
-
-solution(24, 24)
