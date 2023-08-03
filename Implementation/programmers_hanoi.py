@@ -1,6 +1,5 @@
 def move(answer, blockCnt, st, ed):
     temp = 2 # temp: 중간과정
-    # range(1, 4): 1, 2, 3
     for i in range(1, 4):
         if i != st and i != ed:
             temp = i
@@ -17,8 +16,3 @@ def solution(n):
     move(answer, n, 1, 3)
 
     return answer
-
-solution(3)
-
-
-# print('move('+str(answer)+','+str(blockCnt)+','+str(st)+','+ str(ed)+')')
