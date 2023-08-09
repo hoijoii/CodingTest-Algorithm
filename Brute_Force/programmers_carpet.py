@@ -39,3 +39,14 @@ def solution(brown, yellow):
                 answer.append(se)
     
     return answer
+
+
+"""
+다른 방안:
+방정식 세워서 근의 공식으로 brown의 값을 구할 수 있다.
+
+x = (brown-4)/4 + math.sqrt(brown*brown - 8*brown + 16 - 16*yellow)/4
+y = (brown-4)/4 - math.sqrt(brown*brown - 8*brown + 16 - 16*yellow)/4
+answer = [x+2, y+2]
+
+"""
