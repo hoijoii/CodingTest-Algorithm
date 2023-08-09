@@ -2,10 +2,10 @@
 
 #### 💰그리디(Greedy)
 
-- [체육복](https://github.com/hoijoii/CodingTest-Algorithm/blob/master/Greedy/programmers_greedy_gym_clothes(level1).py)-Lv1 ([프로그래머스](https://programmers.co.kr/learn/courses/30/lessons/42862))
-- [우유 축제](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/baekjoon_14720_milk_festival.py)-Bronze III ([백준_14720](https://www.acmicpc.net/problem/14720))
-- [보물](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/baekjoon_1026_tresure.py)-Silver IV ([백준_1026](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/baekjoon_1026_tresure.py))
-- [광물캐기](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/programmers_mining.py)-Lv2 ([프로그래머스](https://school.programmers.co.kr/learn/courses/30/lessons/172927))
+- [체육복](https://github.com/hoijoii/CodingTest-Algorithm/blob/master/Greedy/programmers_greedy_gym_clothes(level1).py) ([프로그래머스](https://programmers.co.kr/learn/courses/30/lessons/42862))
+- [우유 축제](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/baekjoon_14720_milk_festival.py) ([백준_14720](https://www.acmicpc.net/problem/14720))
+- [보물](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/baekjoon_1026_tresure.py) ([백준_1026](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/baekjoon_1026_tresure.py))
+- [광물캐기](https://github.com/hoijoii/CodingTest-Algorithm/blob/main/Greedy/programmers_mining.py) ([프로그래머스](https://school.programmers.co.kr/learn/courses/30/lessons/172927))
   
 
 #### 🛠️구현 (Implementation)
