@@ -20,7 +20,7 @@ import math
 def solution(fees, records):
     answer = []
     parked = {}
-    parkingTime = {record.split(' ')[1]: 0 for record in records} #주차시간
+    parkingTime = {record.split(' ')[1]: 0 for record in records}
 
     for record in records:
         time, vehicle, inout = record.split(' ')
@@ -38,7 +38,7 @@ def solution(fees, records):
         
             parked.pop(vehicle, None) # 출차 처리
 
-    # 만약 parked에 차량이 남아있으면 23:59에 출차 처리.
+    # 만약 parked에 차량이 남아있으면 23:59에 출차 처리
     if parked:
         for vehicle in parked:
             income = list(map(int, (parked[vehicle].split(':'))))
@@ -53,6 +53,3 @@ def solution(fees, records):
 
     answer = list(item[1] for item in sorted(parked.items()))
     return answer
-
-solution([120, 0, 60, 591], ["16:00 3961 IN","16:00 0202 IN","18:00 3961 OUT","18:00 0202 OUT","23:58 3961 IN"])
-#[14600, 34400, 5000]
