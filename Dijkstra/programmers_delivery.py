@@ -47,18 +47,15 @@ def solution(N, road, K):
     time = [float('inf')] * N
 
     for a, b, cost in road:
-        if a<=b: 
-            # graph[출발지]=(도착지, 가중치)
-            graph[a-1].append((b-1, cost)) 
-        else: 
-            # 작은 노드부터 검사할 건데 a가 b보다 크면([5,2,2]같은거) b번 노드를 검사할 때 a를 검사 안 함.
-            # 그래서 graph[작은노드].append((큰 노드, 코스트))
-            graph[b-1].append((a-1, cost))
+        # graph[출발지]=(도착지, 가중치)
+        graph[a-1].append((b-1, cost)) 
+        graph[b-1].append((a-1, cost))
 
     dijkstra(graph, time)
     for t in time:
         if t <= K:
             answer+=1
+    print(answer)
     return answer
 
 solution(5, [[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]], 3)
