@@ -15,5 +15,3 @@ def solution(numbers):
     numbers.sort(key=cmp_to_key(comparator), reverse=True)
     answer = str(int(''.join(numbers)))
     return answer
-
-solution([3, 30, 34, 5, 9])
