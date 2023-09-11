@@ -3,15 +3,14 @@
 https://www.acmicpc.net/problem/1012
 
 테스트케이스에 필요한 최소의 배추흰지렁이 수 print
-가로:x < M
-세로:y < N
+bfs문제
 """
 import sys
 sys.setrecursionlimit(10**6)
 
 T = int(input())
 
-def dfs(x, y):
+def bfs(x, y):
     #상하좌우
     direction = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
@@ -20,7 +19,7 @@ def dfs(x, y):
        nx = x + dir[1]
        if 0 <= ny < N and 0 <= nx < M and graph[ny][nx] == 1:
            graph[ny][nx] = 0
-           dfs(nx, ny)
+           bfs(nx, ny)
 
 for _ in range(T):
     M, N, K = map(int, input().split())
@@ -34,7 +33,7 @@ for _ in range(T):
     for r in range(len(graph)):
         for c in range(len(graph[0])):
             if graph[r][c] == 1:
-                dfs(c, r)
+                bfs(c, r)
                 count += 1
 
     print(count)
