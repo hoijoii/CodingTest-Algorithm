@@ -38,7 +38,7 @@ def up(game):
                     point = game[r][c]
                 else:
                     if point == game[r][c]:
-                        nxt_game[]
+                        nxt_game[c][c] = point * 2 # nxt_game[c][c]: 
                 
 
 def dfs(game, depth):
