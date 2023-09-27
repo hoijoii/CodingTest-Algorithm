@@ -1,7 +1,7 @@
 """
 2048
 https://www.acmicpc.net/problem/12100
-
+https://c4u-rdav.tistory.com/55
 5번 움직여서 만들 수 있는 가장 큰 숫자 print
 
 상하좌우
