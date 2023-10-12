@@ -11,17 +11,26 @@ max(i, j) : i, j 중 마지막으로 불려진 음
 """
 N = int(input())
 music = list(map(int, input().split()))
-dp = [[float('inf') for _ in range(N)] for _ in range(N)]
+dp = [[float('inf') for _ in range(N+1)] for _ in range(N+1)]
 answer = float('inf')
 
 dp[0][1], dp[1][0] = 0, 0
 
-for i in range(N):
-  for j in range(N):
-    if i == j: continue
-    #max(i,j): 직전에 부른 음
-    dp[i][max(i,j)] = dp[i][j] + abs(music[i]-music[max(i, j)])
-    dp[max(i,j)][j] = dp[i][j] + abs(music[j]-music[max(i, j)])
+for a in range(N+1):
+  for b in range(N+1):
+    if a==b: continue
+
+    nxt = max(a, b) + 1 #마지막 부른 음의 다음 음
+    if nxt >= N: continue
+
+    """ if a==0 or b==0:
+      music[0] = music[nxt] # 0이면 음이 바뀌는 cost가 없음. abs를 0으로 만들기 """
+
+    dp[nxt][b] = min(dp[nxt][b], dp[a][b] + abs(music[a]-music[nxt]))
+    dp[a][nxt] = min(dp[a][nxt], dp[a][b] + abs(music[b]-music[nxt]))
+    print(a, b, nxt, dp[nxt][b], dp[a][nxt])
+  print('===============================')
+  print(dp)
 
 for i in range(N):
   answer = min(answer, dp[i][N-1])
