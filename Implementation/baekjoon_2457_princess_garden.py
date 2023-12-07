@@ -21,7 +21,6 @@ periods = [list(map(int, input().split())) for _ in range(N)]
 garden=[[1, 1, 3, 1]] # 꽃 골라담기 리스트
 
 periods.sort(key=lambda x: [x[0], x[1]])
-
 i = 0
 temp = []
 while(i < N):
@@ -51,7 +50,6 @@ while(i < N):
     else:                  # 아니면 꽃 고르기 실패 
       garden=[[1, 1, 3, 1]] #초기화  
       break
-
   i+=1
 
 print(len(garden)-1)
