@@ -33,13 +33,29 @@ T = int(input()) # 테스트케이스 수
 for _ in range(T):
   K = int(input()) # 장의 수
   costs = list(map(int, input().split())) # 장마다 코스트
-  dp = [[float('inf')]*K for _ in range(K)]
+  dp = [[0]*(K+1) for _ in range(K+1)]
   add = [0]*(K+1)
 
-  for i in range(1, K+1):
-    add[i] = add[i-1]+costs[i-1]
+  for i in range(K):
+    add[i+1] = add[i]+costs[i]
   
-  for i in range(1, K+1):
+  # dp[r][c]가 최소가 되도록 pivot 이용(dp[r][c]: r부터 c까지 합쳤을 때 최소비용)
+  for i in range(K):
+    r=1
+    c=i+1
+    for _ in range(K-i):
+      dp[r][c] = float('inf')
+     
+      for pivot in range(c-i, c):
+        dp[r][c] = min(dp[r][c], dp[r][pivot]+dp[pivot+1][c]+add[c]-add[r-1])
+        print(r, c, dp[r][pivot], dp[pivot][c], add[c], add[r-1])
+      r+=1
+      c+=1
 
+print(dp[0][K])
 
-  print(add)
+""""
+2
+4
+40 30 30 50
+"""
