@@ -14,57 +14,139 @@ import copy
 
 M, N = map(int, input().split()) #세로가로
 office = [list(map(int, input().split())) for _ in range(M)]
-direction = [[1, 0], [-1, 0], [0, -1], [0, 1]]
+min_val = float('inf')
+temp = []
+cctv = []
 
-def one(i, j):
-  for d in direction:
-    if d[0] == 1 or d[0] == -1:
-      for n in range(N):
-        r, c = i+d[0], j+d[1]
-        if n == N-1 and office[r][c] == 6: break
+def up(map, x, y):
+  for i in range(x-1, -1, -1):
+    if map[i][y] == 6: 
+      return
+    if map[i][y] == 0 : 
+      map[i][y] = -1
 
-        
+def down(map, x, y):
+  for i in range(x+1, M):
+    if map[i][y] == 6: 
+      return
+    if map[i][y] == 0 : 
+      map[i][y] = -1
 
+def left(map, x, y):
+  for i in range(y-1, -1, -1):
+    if map[x][i] == 6: 
+      return
+    if map[x][i] == 0 : 
+      map[x][i] = -1
+  
+def right(map, x, y):
+  for i in range(y+1, N):
+    if map[x][i] == 6: 
+      return
+    if map[x][i] == 0 : 
+      map[x][i] = -1
 
-    
-    
+def counting(map):
+  cnt = 0
+  for m in range(M):
+    for n in range(N):
+      if map[m][n] == 0: cnt+=1
+  return cnt
 
+def dfs(depth, map, dump):
+  if depth == len(cctv):
+    global min_val 
+    min_val = min(min_val, counting(map))
+    return
+  
+  x, y = cctv[depth]
+
+  if office[x][y] == 1:
+    temp = copy.deepcopy(map)
+    up(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    down(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    left(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    right(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+  elif office[x][y] == 2:
+    temp = copy.deepcopy(map)
+    up(temp, x, y)
+    down(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    left(temp, x, y)
+    right(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+  elif office[x][y] == 3:
+    temp = copy.deepcopy(map)
+    up(temp, x, y)
+    right(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    right(temp, x, y)
+    down(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    down(temp, x, y)
+    left(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    left(temp, x, y)
+    up(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+  elif office[x][y] == 4:
+    temp = copy.deepcopy(map)
+    left(temp, x, y)
+    up(temp, x, y)
+    right(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    up(temp, x, y)
+    right(temp, x, y)
+    down(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    right(temp, x, y)
+    down(temp, x, y)
+    left(temp, x, y)
+    dfs(depth+1, temp, dump)
+
+    temp = copy.deepcopy(map)
+    down(temp, x, y)
+    left(temp, x, y)
+    up(temp, x, y)
+    dfs(depth+1, temp, dump)
+  
+  elif office[x][y] == 5:
+    temp = copy.deepcopy(map)
+    up(temp, x, y)
+    down(temp, x, y)
+    left(temp, x, y)
+    right(temp, x, y)
+    dfs(depth+1, temp, dump)
+      
 for i in range(M):
   for j in range(N):
-    #cctv = office[i][j]
-    #if office[i][j] != 0 and office[i][j] != 6: # cctv
-    if office[i][j] == 1:
-      one(i, j)
-    elif office[i][j] == 2:
-      
+    if office[i][j] != 0 and office[i][j] != 6:
+      cctv.append([i, j])
 
-
-""" cctv = {1: [[[1,0]], [[-1,0]], [[0,-1]], [[0,1]]], #상하좌우
-        2: [[[1,0], [-1, 0]], [[0,1], [0,-1]]], #상하, 좌우
-        3: [[[1,0], [0,1]], [[0,1], [-1,0]], [[-1,0], [0,-1]], [[0,-1], [1, 0]]], #위오, 오아, 아왼, 왼위
-        4: [[[0,-1], [1,0], [0,1]], [[1,0], [0,1], [-1,0]], [[0,1], [-1,0], [0,-1]], [[-1,0], [0,-1], [1,0]]], #왼위오, 위오아, 오아왼, 아왼위
-        5: [[[1,0], [-1,0], [0,-1], [0,1]]] #모든방향
-        }
-
-def check(i, j):
-  count = 0
-  max_monitor = 0
-  monitored = copy.deepcopy(office)
-  r, c = i, j
-  for direction in cctv[office[i][j]]:
-    for d in direction:
-      r,c = r+d[0], c+d[1]
-      
-      if (r == M-1 and (d[0]==1 or d[0]==-1)) or (c == N-1 and (d[1]==1 or d[1]==-1)) or office[r][c] == 6:
-        break
-
-      if office[r][c] == 0:
-        monitored[r][c] = -1
-        count += 1
-
-
-for i in range(M):
-  for j in range(N):
-    #cctv = office[i][j]
-    if office[i][j] != 0 and office[i][j] != 6: # cctv면
-      check(i, j) """
+dfs(0, office, cctv)
+print(min_val)
