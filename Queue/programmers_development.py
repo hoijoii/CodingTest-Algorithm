@@ -12,20 +12,37 @@ return: [2, 1] // 7일 째에 2개, 9일째에 1개 배포
 
 일단 queue에 progresses를 다 넣기
 조건에 따라 queue에서 제거하는데..
-어차피 앞에 거 완료 못하면 뒤에 거 못 빼니까 queue 의미가 있나?
+queue에 넣는데 시간 또 걸리잖어~
+
+1. progress를 queue로 사용
+2. queue deepcopy한 리스트를 따로 만들기
+3. queue를 for문에 넣으면 queue 변형 불가니까 deepcopy한 거 검사하면서 queue를 변형시킴
+4. 가장 상위 반복문은 while(queue). queue가 빌 때까지 반복함. 매 반복마다 queue를 deepcopy하기
+
 """
-""" def checkFinish(list):
-    for i in range(len(list)):
-        if(list[i] == 100):
-            return True """
+import copy
 
 def solution(progresses, speeds):
     answer = []
 
-    for i in range(len(progresses)):
-        if(progresses[i] == 100):
+    list = copy.deepcopy(progresses)
 
+    while(progresses):
+        cnt = 0
+        for i in range(len(list)):
+            if(list[i] == -1):
+                continue
 
-        progresses[i] += speeds[i]
-
+            list[i] += speeds[i];
+            # 값이 100이 넘어도 첫번째 원소거나, 첫번째 원소 뒤따라 있을 때에만 pop 가능
+            if(list[i] >= 100 and (i==0 or list[i-1]==-1)):
+                progresses.pop(0)
+                list[i] = -1
+                cnt += 1
+        
+        if(cnt): 
+            answer.append(cnt)
+        
     return answer
+
+    
