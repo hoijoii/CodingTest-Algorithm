@@ -21,44 +21,41 @@ class LinkedList:
     else:
       current = self.head
       while current.next:
-        current = current.next
+        current=current.next
       current.next = Node(value)
-  
-  def insert(self, idx, value):
-    new_node = Node(value)
-    current = self.head
 
-    if(idx == 0):
-      new_node.next = current
+  def insert(self, idx, value):
+    current = self.head
+    new_node = Node(value)
+
+    # 맨 앞 insert
+    if (idx==0):
       self.head = new_node
-      return
-  
-    for _ in range(idx-1):
-      current = current.next
-    new_node.next = current.next
-    current.next = new_node
-    return
+      new_node.next = current
+    
+    # 중간에서 insert
+    else:
+      for _ in range(idx-1):
+        current = current.next # insert할 곳 직전 노드 찾기
+      new_node.next = current.next
+      current.next = new_node
 
   def delete(self, idx):
     current = self.head
 
-    if(idx == 0):
+    # 한 글자일 때
+    if(current.next == None):
+      self.head=None
       return
 
-    if(idx == 1):
-      self.head = current.next
-      return
-
-    else:
-      for _ in range(idx-2): # 삭제될 노드의 앞 노드를 찾음 
-        current = current.next
-      
-      if (current.next.next == None):
-        current.next = None
-        return
-
+    # 두 글자 이상일 때
+    for _ in range(idx-2):
+      current = current.next
+    
+    if(current.next.next):
       current.next = current.next.next
-      return
+    else:
+      current.next = None
 
   def get_length(self):
     current = self.head
@@ -67,7 +64,7 @@ class LinkedList:
       current = current.next
       length += 1
     return length
-
+  
   def get_all(self):
     current = self.head
     result = ''
@@ -88,16 +85,13 @@ for val in string:
   linked_list.append(val)
 
 for command in edit:
-  if(command[0] == 'L'):
-    if cursor==0:
-      continue
+  if(command[0] == 'L' and cursor > 0):
     cursor -= 1
-  elif(command[0] == 'D' and cursor<linked_list.get_length()):
+  elif(command[0] == 'D' and cursor < linked_list.get_length()):
     cursor += 1
-  elif(command[0] == 'B'):
-    if (cursor > 0):
-      linked_list.delete(cursor)
-      cursor -= 1
+  elif(command[0] == 'B' and cursor > 0):
+    linked_list.delete(cursor)
+    cursor -= 1
   elif(command[0] == 'P'):
     if cursor == linked_list.get_length(): 
       linked_list.append(command[1])
