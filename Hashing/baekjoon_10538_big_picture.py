@@ -41,25 +41,13 @@ def hashing(string, idx):
   value = 0
 
   if (idx is None):
-    for i, s in enumerate(string):
-      value += ord(s) * (d**(sw-(i+1)))
-    value = value % q
+    for s in string:
+      value = (d*value + ord(s)) % q
+  
   else:
-    value = ord(string) * (d**(sw-1)) % q if(idx==-1) else ord(string)
+    value = ord(string) * ((d**(sw-1)) % q) if(idx==-1) else ord(string)
   
   return value
-
-""" def hashing(string, idx):
-  value=0
-
-  if(idx is None):
-    for i, s in enumerate(string):
-      value += ord(s)*(2**(sw-(i+1))) # 공식
-  
-  else:
-    value = ord(string)*(2**(sw-1)) if (idx==-1) else ord(string)
-
-  return value """
 
 # 작은 그림을 전부 해싱해둠
 s_hashes = []
@@ -76,17 +64,23 @@ def checkPic(r, c):
   return 1
       
 
-for r in range(bh-sh):
-  for c in range(bw-sw):
+for r in range(bh-sh+1):
+  for c in range(bw-sw+1):
     print(bpic[r][c:sw+c])
     if(c==0):
       b_hash = hashing(bpic[r][:sw], None)
+    else :
+      b_hash = (d*(b_hash - hashing(bpic[r][c-1], -1)) + hashing(bpic[r][sw+c-1], sw+c-1)) % q # 검사 문자열에서 빠져나가는 문자(기존 문자열 맨앞)의 해시값을 빼고 검사 문자열에 추가되는 문자(맨뒤)의 해시값을 더함
 
-    b_hash = (d*(b_hash - hashing(bpic[r][c-1], -1)) + hashing(bpic[r][sw+c-1], sw+c-1)) % q # 검사 문자열에서 빠져나가는 문자(기존 문자열 맨앞)의 해시값을 빼고 검사 문자열에 추가되는 문자(맨뒤)의 해시값을 더함
+    # 해시값이 음수면 양수로 만들어 줌.
+    # mod 연산 법칙에 의해 q를 더하는 방식으로 양수로 만듦.
+    if(b_hash < 0):
+      b_hash += q
 
     # 작은 그림 첫 번째 줄과 해시값을 비교 && 해시값 충돌일 수 있으니 문자열이 정확히 같은지도 확인
     if(s_hashes[0] == b_hash and spic[0] == bpic[r][c:sw+c]):
       cnt += checkPic(r,c)
       
+    print(b_hash)
 
 print(cnt)
