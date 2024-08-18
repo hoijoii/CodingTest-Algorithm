@@ -16,6 +16,9 @@ https://www.acmicpc.net/problem/14267
 출력:
 0 2 6 6 12
 """
+import sys
+sys.setrecursionlimit(10**6)
+
 N, M = map(int, input().split()) # 회사 직원 수(직원은 1~N번 매겨져 있음), 최초의 칭찬 수
 boss_list = list(map(int, input().split())) # 직원들 각각의 상사
 compliment = [list(map(int, input().split())) for _ in range(M)] # 칭찬받은 직원의 칭찬 수치
@@ -61,5 +64,3 @@ preorder(root, 0) # 순회하며 칭찬 수치 더하기
 
 for node in tree.values():
   print(node.compli_num, end=' ')
-
-print('\n')
