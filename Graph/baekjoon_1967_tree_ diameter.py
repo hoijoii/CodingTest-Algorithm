@@ -24,7 +24,7 @@ else :
 
   # 그래프 만들기
   for _ in range(N-1):
-    [parent, child, weight] = list(map(int, input().split()))
+    parent, child, weight = list(map(int, input().split()))
     # graph에 키값이 없으면 parent: []로 생성하고 append, 있으면 바로 append
     graph.setdefault(parent, []).append([child, weight])
     graph.setdefault(child, []).append([parent, weight])
