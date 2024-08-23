@@ -9,9 +9,15 @@ https://www.acmicpc.net/problem/2206
 4. 이동 가능 칸: 상하좌우
 5. 벽은 한 개만 부술 수 있음
 
-방법
+방법1
 벽을 부수는 모든 경우의 수 따져야 하나.. 
 - 1을 하나씩만 다 없애봐야하나.... => 일단 이렇게 해보기
+=> 시간초과;;
+
+방법2
+1을 발견하면 if문 드가기. 
+walls 리스트(set 쓰자)에 1좌표가 없으면 append한 뒤 bfs할 때 이 좌표를 0 취급하게 함 + 다른 벽은 못 부수게 flag값도 있어야 하나..
+1의 수만큼만 반복할 순 없을까
 
 
 6 4
@@ -32,6 +38,8 @@ field_input = [list(map(int, ''.join(input().split()))) for _ in range(N)]
 
 shortest = float("inf")
 visited = [[0 for _ in range(M)] for _ in range(N)]
+walls = set() #시간절약
+wall_flag = 0
 
 direction = [[-1, 0], [1, 0], [0, -1], [0, 1]] #상하좌우
 
@@ -65,7 +73,8 @@ def bfs(field):
         queue.append([ny, nx])
 
   return float('inf')
-      
+
+# 여기가 시간초과 에바임..
 for r in range(N):
   for c in range(M):
     if field_input[r][c] == 1:
